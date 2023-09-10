@@ -4,9 +4,10 @@ import network
 import utime
 import urequests
 from mfrc522 import MFRC522
-from WIFI_CONFIG import ssid, password
+#from clsCards import cardhttp
 import _thread
 import gc
+from WIFI_CONFIG import ssid, password
 
 # Set up the Buzzer pin as PWM
 buzzer = PWM(Pin(12)) # Set the buzzer to PWM mode
@@ -15,6 +16,7 @@ buzzer = PWM(Pin(12)) # Set the buzzer to PWM mode
 buzzer.freq(1000)
 
 #from store import NfcCard, cardlib
+
 
 room = 'Kitchen'
 
@@ -46,6 +48,15 @@ else:
 #r = urequests.get("http://192.168.68.103:5005/playroom/playpause")
 
 #r.close()
+
+from ota import OTAUpdater
+from WIFI_CONFIG import SSID, PASSWORD
+
+firmware_url = "https://raw.githubusercontent.com/tdp1000/PicoRFID/main/"
+
+ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
+
+ota_updater.download_and_install_update_if_available()
 
 
 reader = MFRC522(spi_id=0,sck=2,miso=4,mosi=3,cs=1,rst=0)
