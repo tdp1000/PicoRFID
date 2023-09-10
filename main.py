@@ -4,10 +4,9 @@ import network
 import utime
 import urequests
 from mfrc522 import MFRC522
-#from clsCards import cardhttp
+from WIFI_CONFIG import ssid, password
 import _thread
 import gc
-
 
 # Set up the Buzzer pin as PWM
 buzzer = PWM(Pin(12)) # Set the buzzer to PWM mode
@@ -17,8 +16,6 @@ buzzer.freq(1000)
 
 #from store import NfcCard, cardlib
 
-ssid = 'VM8466423'
-password = 'Catbells23'
 room = 'Kitchen'
 
 wlan = network.WLAN(network.STA_IF)
